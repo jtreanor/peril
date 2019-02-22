@@ -137,8 +137,7 @@ export function executorForInstallation(platform: Platform, runner: DangerRunner
   // We need this for things like repo slugs, PR IDs etc
   // https://github.com/danger/danger-js/blob/master/source/ci_source/ci_source.js
 
-  console.log(`Caller: ${executorForInstallation.caller}`);
-  console.log(`Options: ${options}`);
+  console.log(`Options: ${JSON.stringify(options)}`);
 
   const config: ExecutorOptions = {
     dangerID: "peril", // TODO: multiple Peril runs?
