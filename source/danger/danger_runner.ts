@@ -142,7 +142,7 @@ export function executorForInstallation(platform: Platform, runner: DangerRunner
     jsonOnly: false,
     stdoutOnly: false,
     verbose: !!process.env.LOG_FETCH_REQUESTS,
-    disableGitHubChecksSupport: options.disable_github_check,
+    disableGitHubChecksSupport: true,
     passURLForDSL: false,
   }
 
