@@ -39,9 +39,21 @@ export async function getGitHubFileContents(
     return buffer.toString()
   } else {
     if (showError) {
-      winston.error("res: " + res.url)
       winston.error("Getting GitHub file failed: " + JSON.stringify(data))
+      winston.error(`Failed token: ${token}`)
+      winston.error(`url: ${res.url}`)
+      winston.error(`status: ${res.status}`)
+      winston.error(`headers: ${JSON.stringify(res.headers)}`)
+      winston.error(`body: ${JSON.stringify(data)}`)
+      winston.error(`timeout: ${res.timeout}`)
     }
+    const retryRes = await api(token, `repos/${repoSlug}/contents/${path}?${refString}`)
+    winston.error(`retry url: ${retryRes.url}`)
+    winston.error(`retry status: ${retryRes.status}`)
+    winston.error(`retry headers: ${JSON.stringify(retryRes.headers)}`)
+    winston.error(`body: ${JSON.stringify(retryRes.json())}`)
+    winston.error(`retry timeout: ${retryRes.timeout}`)
+
     return ""
   }
 }
